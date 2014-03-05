@@ -10,6 +10,7 @@ function (Settings) {
   /** @scratch /configuration/config.js/2
    * === Parameters
    */
+
   return new Settings({
 
     /** @scratch /configuration/config.js/5
@@ -21,7 +22,7 @@ function (Settings) {
      * kibana installed on. You probably want to set it to the FQDN of your
      * elasticsearch host
      */
-    elasticsearch: "http://"+window.location.hostname+":3000/es",
+    elasticsearch: "http://"+window.location.hostname + ((window.location.port != null) ? ":" +  window.location.port :  "") + "/es",
 
     /** @scratch /configuration/config.js/5
      * ==== default_route
@@ -32,7 +33,7 @@ function (Settings) {
      *
      * +default_route: '/dashboard/elasticsearch/WebLogs',+
      */
-    default_route     : '/dashboard/file/default.json',
+    default_route     : '/dashboard/file/adevents.json',
 
     /** @scratch /configuration/config.js/5
      * ==== kibana-int
@@ -40,7 +41,7 @@ function (Settings) {
      * The default ES index to use for storing Kibana specific object
      * such as stored dashboards
      */
-    kibana_index: "kibana-int",
+    kibana_index: "kibana3",
 
     /** @scratch /configuration/config.js/5
      * ==== panel_name
