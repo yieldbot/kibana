@@ -1,3 +1,49 @@
+#YIELDBOT ECOSYSTEM INSTALL INSTRUCTIONS
+
+Choose Your Use Case
+
+1. I just want to use kibana, create a few dashboards and have no interest in messing with kibanas guts
+       
+	   This is by far the most common use case !!!!!!!!!!!!!!!!!!!!!  
+
+       Inside Fry
+
+		Update Fry To Latest From Repo
+		Run Bower Update To Get Latest Jenkins Build Of Kibana
+
+	   That's It,   Start up fry and head to http://localhost:3000/ui/kibana
+	   
+
+2. I'd like to make updates to Kibana's internals and or default configuration.
+
+		ONLY IF YOU NEED TO MUCK AROUND IN KIBANA'S GUTS, UPDATE BUILD, ETC
+
+        Inside Fry
+
+		Update Fry To Latest From Repo
+		Run Bower Update To Get Latest Jenkins Build Of Kibana
+
+        Inside Kibana
+
+        make sure you are on the ybot branch
+
+        1. grunt build
+        2. cd dist
+        3. bower link
+
+        those three steps build your local version of kibana into the dist directory,  navigate into the dist directory, and create a bower symlink for the kibana project pointing to your local kibana build.
+
+        Inside Fry
+
+        bower link kibana.
+
+        start editing your local copy of kibana.  remember you won't see your updates on your local
+        copy until you run a build against your local edits  (grunt build)
+
+        a watch task is in the works as well so that you will be able to do live edits.
+
+
+
 # Kibana
 
 __NOTE__: You have reached the Kibana 3 repository.
