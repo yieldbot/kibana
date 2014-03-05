@@ -11,60 +11,61 @@ function (Settings) {
    * === Parameters
    */
 
-  return new Settings({
 
-    /** @scratch /configuration/config.js/5
-     * ==== elasticsearch
-     *
-     * The URL to your elasticsearch server. You almost certainly don't
-     * want +http://localhost:9200+ here. Even if Kibana and Elasticsearch are on
-     * the same host. By default this will attempt to reach ES at the same host you have
-     * kibana installed on. You probably want to set it to the FQDN of your
-     * elasticsearch host
-     */
-    elasticsearch: "http://"+window.location.hostname + ((window.location.port != null) ? ":" +  window.location.port :  "") + "/es",
+  function getParameterByName(name) {
+      var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
+  
+  var param = (getParameterByName('search') === 'es' || getParameterByName('search') === 'config') ?  getParameterByName('search') : 'es';
 
-    /** @scratch /configuration/config.js/5
-     * ==== default_route
-     *
-     * This is the default landing page when you don't specify a dashboard to load. You can specify
-     * files, scripts or saved dashboards here. For example, if you had saved a dashboard called
-     * `WebLogs' to elasticsearch you might use:
-     *
-     * +default_route: '/dashboard/elasticsearch/WebLogs',+
-     */
-    default_route     : '/dashboard/file/adevents.json',
+  var settings = {
+    es: {
+      elasticsearch: "http://"+window.location.hostname + ((window.location.port != null) ? ":" +  window.location.port :  "") + "/es",
+      default_route     : '/dashboard/file/adevents.json',
+      kibana_index: "kibana-yb-events",
+      panel_names: [
+            'histogram',
+            'map',
+            'goal',
+            'table',
+            'filtering',
+            'timepicker',
+            'text',
+            'hits',
+            'column',
+            'trends',
+            'bettermap',
+            'query',
+            'terms',
+            'stats',
+            'sparklines'
+          ]      
+    },
+    config: {
+      elasticsearch: "http://"+window.location.hostname + ((window.location.port != null) ? ":" +  window.location.port :  "") + "/esconfig",
+      default_route     : '/dashboard/file/blank.json',
+      kibana_index: "kibana-yb-config",
+      panel_names: [
+            'histogram',
+            'map',
+            'goal',
+            'table',
+            'filtering',
+            'timepicker',
+            'text',
+            'hits',
+            'column',
+            'trends',
+            'bettermap',
+            'query',
+            'terms',
+            'stats',
+            'sparklines'
+          ]       
+    }
+  };
 
-    /** @scratch /configuration/config.js/5
-     * ==== kibana-int
-     *
-     * The default ES index to use for storing Kibana specific object
-     * such as stored dashboards
-     */
-    kibana_index: "kibana3",
 
-    /** @scratch /configuration/config.js/5
-     * ==== panel_name
-     *
-     * An array of panel modules available. Panels will only be loaded when they are defined in the
-     * dashboard, but this list is used in the "add panel" interface.
-     */
-    panel_names: [
-      'histogram',
-      'map',
-      'goal',
-      'table',
-      'filtering',
-      'timepicker',
-      'text',
-      'hits',
-      'column',
-      'trends',
-      'bettermap',
-      'query',
-      'terms',
-      'stats',
-      'sparklines'
-    ]
-  });
+  return new Settings(settings[param]);
 });
