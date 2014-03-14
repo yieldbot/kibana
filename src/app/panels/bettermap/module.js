@@ -223,7 +223,7 @@ function (angular, app, _, L, localRequire) {
         var map, layerGroup;
 
         function render_panel() {
-          elem.css({height:scope.panel.height||scope.row.height});
+          elem.css({height:scope.row.height});
 
           scope.require(['./leaflet/plugins'], function () {
             scope.panelMeta.loading = false;
@@ -236,7 +236,9 @@ function (angular, app, _, L, localRequire) {
               });
 
               // This could be made configurable?
-              L.tileLayer('https://ssl_tiles.cloudmade.com/57cbb6ca8cac418dbb1a402586df4528/22677/256/{z}/{x}/{y}.png', {
+              L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
+                attribution: '"Data, imagery and map information provided by MapQuest, '+
+                  'OpenStreetMap <http://www.openstreetmap.org/copyright> and contributors, ODbL',
                 maxZoom: 18,
                 minZoom: 2
               }).addTo(map);

@@ -142,7 +142,7 @@ function (angular, app, _, $) {
     };
 
     $scope.build_search = function(field,value) {
-      filterSrv.set({type:'querystring',mandate:'must',query:field+":"+value});
+      filterSrv.set({type:'terms',field:field,value:value,mandate:"must"});
     };
 
   });
@@ -166,7 +166,7 @@ function (angular, app, _, $) {
         });
 
         function render_panel() {
-          elem.css({height:scope.panel.height||scope.row.height});
+          elem.css({height:scope.row.height});
 
           elem.text('');
 
