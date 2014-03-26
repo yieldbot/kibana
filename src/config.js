@@ -21,7 +21,7 @@ function (Settings) {
 
   var settings = {
     es: {
-      elasticsearch: "http://"+window.location.hostname + (window.location.port ? ":" +  window.location.port :  "") + "/es",
+      elasticsearch: window.document.location.protocol  + "//" + window.location.hostname + (window.location.port ? ":" +  window.location.port :  "") + "/es",
       default_route     : '/dashboard/file/adevents.json',
       kibana_index: "kibana-yb-events",
       panel_names: [
@@ -43,7 +43,7 @@ function (Settings) {
           ]      
     },
     config: {
-      elasticsearch: "http://"+window.location.hostname + (window.location.port ? ":" +  window.location.port :  "") + "/esconfig",
+      elasticsearch: window.document.location.protocol  + "//" + window.location.hostname + (window.location.port ? ":" +  window.location.port :  "") + "/esconfig",
       default_route     : '/dashboard/file/blank.json',
       kibana_index: "kibana-yb-config",
       panel_names: [
