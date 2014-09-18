@@ -10,7 +10,7 @@
       ],
       "list": {
         "0": {
-          "query": "psn:d3c1",
+          "query": "psn:{{ ARGS.psn || 1234 }}",
           "alias": "",
           "color": "#7EB26D",
           "id": 0,
